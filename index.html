@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="My Love ❤️">
+  <title>Us ❤️</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+
+<meta name="theme-color" content="#ff4d88">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #090909;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(255, 0, 102, 0.2), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(255, 102, 204, 0.2), transparent 30%);
+      z-index: -2;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 4s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.2;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    .glass {
+      width: 100%;
+      max-width: 900px;
+      padding: 60px 40px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 40px rgba(255,0,100,0.2);
+    }
+
+    .hero h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 5rem;
+      color: #ffb3d1;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      line-height: 2;
+      color: rgba(255,255,255,0.9);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .btn {
+      margin-top: 40px;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #ff4d88, #ff0066);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.4s ease;
+      box-shadow: 0 8px 25px rgba(255, 0, 102, 0.4);
+    }
+
+    .btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(255, 0, 102, 0.6);
+    }
+
+    .section {
+      padding: 100px 8%;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .title h2 {
+      font-size: 3rem;
+      color: #ffb3d1;
+      margin-bottom: 15px;
+    }
+
+    .title p {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .gallery .card {
+      overflow: hidden;
+      border-radius: 25px;
+      position: relative;
+      height: 350px;
+      cursor: pointer;
+      transition: 0.4s ease;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .gallery .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(255,0,100,0.3);
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.5s ease;
+    }
+
+    .gallery .card:hover img {
+      transform: scale(1.1);
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      display: flex;
+      align-items: flex-end;
+      padding: 25px;
+    }
+
+    .overlay h3 {
+      font-size: 1.2rem;
+    }
+
+    .love-letter {
+      display: flex;
+      justify-content: center;
+    }
+
+    .letter-box {
+      max-width: 850px;
+      background: rgba(255,255,255,0.08);
+      padding: 50px;
+      border-radius: 30px;
+      line-height: 2;
+      font-size: 1.1rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 10px 35px rgba(255,0,100,0.2);
+    }
+
+    .letter-box span {
+      color: #ff8fb8;
+      font-weight: 600;
+    }
+
+    .counter {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 2rem;
+      color: #ffb3d1;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      color: #ff4d88;
+      animation: floatUp linear forwards;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @media(max-width: 768px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .glass {
+        padding: 40px 25px;
+      }
+
+      .title h2 {
+        font-size: 2.3rem;
+      }
+
+      .letter-box {
+        padding: 35px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <section class="hero">
+    <div class="glass">
+      <h1>To My Sudu Manika❤️</h1>
+
+      <p>
+        Every second with you feels magical.
+        You are the reason behind my smile,
+        my happiness, and my peace.
+        This little website is only a small piece
+        of how much I truly love you.
+      </p>
+
+      <button class="btn" onclick="showLove()">
+        Click My Heart ❤️
+      </button>
+
+      <div class="counter" id="daysTogether"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="title">
+      <h2>Our Memories 📸</h2>
+      <p>Every picture tells our beautiful story</p>
+    </div>
+
+    <div class="gallery">
+
+      <div class="card">
+        <img src="yellow.jpeg" alt="">
+        <div class="overlay">
+          <h3>Our Special Moment ❤️</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="IMG_3868.JPG.jpeg" alt="">
+        <div class="overlay">
+          <h3>Your Beautiful Smile ✨</h3>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="white.jpeg" alt="">
+        <div class="overlay">
+          <h3>Forever Together 💕</h3>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section love-letter">
+    <div class="letter-box">
+      <p>
+        My Love,
+        <br><br>
+        I never believed someone could completely change my life until I met you.
+        You made my darkest days brighter and my happiest moments even more beautiful.
+        <br><br>
+        Every laugh, every memory, every late-night conversation with you means everything to me.
+        I promise to always support you, protect your heart, and love you endlessly.
+        <br><br>
+        <span>
+          Nuba Hamuwunu da Indala Wenekeku Na 
+          Ma Pathala 
+        </span>
+        <br><br>
+        I Love You Forever mage Pana ❤️
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    I Love you Sudu Manikaaaaaaaaaaaaaa.❤️
+    
+  </footer>
+
+  <audio id="bgMusic" loop>
+    <source src="sudu.mp3" type="audio/mp3">
+  </audio>
+
+  <script>
+
+    function showLove() {
+      alert("You are the best thing that ever happened to me mage sudu manika ❤️");
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤️';
+
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = Math.random() * 25 + 15 + 'px';
+      heart.style.animationDuration = Math.random() * 3 + 4 + 's';
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    setInterval(createHeart, 250);
+
+    const stars = document.getElementById('stars');
+
+    for(let i = 0; i < 120; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 4 + 's';
+
+      stars.appendChild(star);
+    }
+
+    const startDate = new Date('2025-02-12');
+    const today = new Date();
+
+    const diffTime = today - startDate;
+    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    document.getElementById('daysTogether').innerHTML =
+      days + ' Days With You ❤️';
+
+  </script>
+
+  <script>
+const music = document.getElementById("bgMusic");
+
+function startMusic() {
+    music.play();
+
+    document.removeEventListener("click", startMusic);
+    document.removeEventListener("touchstart", startMusic);
+}
+
+document.addEventListener("click", startMusic);
+document.addEventListener("touchstart", startMusic);
+</script>
+
+</body>
+</html>
+
