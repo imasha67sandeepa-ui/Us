@@ -285,6 +285,60 @@
     display:inline-block;
     border:1px solid rgba(255,255,255,0.1);
 }
+
+.anniversary-box{
+
+    text-align:center;
+
+    padding:40px 20px;
+
+    margin-top:40px;
+
+    background:rgba(255,255,255,0.08);
+
+    border-radius:30px;
+
+    border:1px solid rgba(255,255,255,0.1);
+
+    backdrop-filter:blur(10px);
+
+    color:white;
+
+    max-width:800px;
+
+    margin-left:auto;
+    margin-right:auto;
+
+}
+
+.anniversary-box h2{
+
+    color:#ffb3d1;
+
+    margin-bottom:25px;
+
+    font-size:2.5rem;
+
+}
+
+#loveYears{
+
+    font-size:1.5rem;
+
+    margin-bottom:20px;
+
+    color:#ffd1e6;
+
+}
+
+#countdown{
+
+    font-size:1.3rem;
+
+    color:white;
+
+}
+
   </style>
 </head>
 
@@ -311,6 +365,16 @@
       <div class="counter" id="daysTogether"></div>
     </div>
   </section>
+
+<div class="anniversary-box">
+
+    <h2>Our Love Story ❤️</h2>
+
+    <div id="loveYears"></div>
+
+    <div id="countdown"></div>
+
+</div>
 
   <section class="section">
     <div class="title">
@@ -446,6 +510,133 @@ document.addEventListener("click", startMusic);
 document.addEventListener("touchstart", startMusic);
 </script>
 
+<script>
+
+function updateAnniversary() {
+
+    // ENTER YOUR ANNIVERSARY DATE
+    const anniversaryDate =
+        new Date("2026-02-12T00:00:00");
+
+    // LOCAL TIME
+    const now = new Date();
+
+    // LOVE TIME DIFFERENCE
+    let diffLove = now - anniversaryDate;
+
+    // TOTAL DAYS TOGETHER
+    const totalDays =
+        Math.floor(diffLove / (1000 * 60 * 60 * 24));
+
+    // YEARS TOGETHER
+    let years =
+        now.getFullYear() -
+        anniversaryDate.getFullYear();
+
+    // MONTHS TOGETHER
+    let months =
+        now.getMonth() -
+        anniversaryDate.getMonth();
+
+    // DAYS
+    let days =
+        now.getDate() -
+        anniversaryDate.getDate();
+
+    // FIX NEGATIVE DAYS
+    if(days < 0){
+
+        months--;
+
+        const previousMonth =
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                0
+            ).getDate();
+
+        days += previousMonth;
+    }
+
+    // FIX NEGATIVE MONTHS
+    if(months < 0){
+
+        years--;
+
+        months += 12;
+    }
+
+    // SHOW LOVE YEARS
+    document.getElementById("loveYears").innerHTML =
+
+        `Together for ❤️ 
+        <br><br>
+        ${years} Years 
+        ${months} Months 
+        ${days} Days
+        <br><br>
+        (${totalDays} Total Days ❤️)`;
+
+    // NEXT ANNIVERSARY
+    let nextAnniversary = new Date(
+        now.getFullYear(),
+        anniversaryDate.getMonth(),
+        anniversaryDate.getDate(),
+        0,0,0
+    );
+
+    // IF PASSED
+    if(now > nextAnniversary){
+
+        nextAnniversary = new Date(
+            now.getFullYear() + 1,
+            anniversaryDate.getMonth(),
+            anniversaryDate.getDate(),
+            0,0,0
+        );
+    }
+
+    // COUNTDOWN
+    const diff = nextAnniversary - now;
+
+    const countdownDays =
+        Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    const hours =
+        Math.floor(
+            (diff % (1000 * 60 * 60 * 24))
+            / (1000 * 60 * 60)
+        );
+
+    const minutes =
+        Math.floor(
+            (diff % (1000 * 60 * 60))
+            / (1000 * 60)
+        );
+
+    const seconds =
+        Math.floor(
+            (diff % (1000 * 60))
+            / 1000
+        );
+
+    document.getElementById("countdown").innerHTML =
+
+        `Next Anniversary In ❤️
+        <br><br>
+        ${countdownDays} Days
+        ${hours} Hours
+        ${minutes} Minutes
+        ${seconds} Seconds`;
+
+}
+
+// UPDATE EVERY SECOND
+setInterval(updateAnniversary, 1000);
+
+updateAnniversary();
+
+</script>
 
 </body>
 </html>
